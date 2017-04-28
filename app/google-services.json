@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "409726364664",
+    "firebase_url": "https://androproj-a9f6e.firebaseio.com",
+    "project_id": "androproj-a9f6e",
+    "storage_bucket": "androproj-a9f6e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409726364664:android:0c3667ca16fb345c",
+        "android_client_info": {
+          "package_name": "com.andro.obe.trackmywish"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "409726364664-hr7oc48koa551sc1epku05ml8hm7ki9v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsKA0NPq-JB5GuSGOyJPXfDcgg5nkAFf4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
