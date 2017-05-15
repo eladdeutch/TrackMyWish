@@ -24,7 +24,7 @@ public class ItemActivity extends AppCompatActivity {
             titleText.setText(currentItem.getItemName());
 
             //Distance
-            distanceText.setText(Double.toString(currentItem.getDistance()));
+            distanceText.setText(Double.toString(currentItem.getLatitude()));
 
             Button savrB = (Button)findViewById(R.id.saveBtt);
             savrB.setOnClickListener(new View.OnClickListener() {

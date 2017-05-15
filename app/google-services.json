@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "409726364664-gtt2clesvqevd378vik595jkd82006q8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.andro.obe.trackmywish",
+            "certificate_hash": "3b3a6c54a8bad6fd110f61bba0813289cef4faff"
+          }
+        },
+        {
           "client_id": "409726364664-hr7oc48koa551sc1epku05ml8hm7ki9v.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "409726364664-hr7oc48koa551sc1epku05ml8hm7ki9v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

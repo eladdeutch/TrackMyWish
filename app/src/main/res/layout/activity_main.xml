@@ -27,20 +27,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:theme="@style/ThemeOverlay.MyDarkButton"
                 android:text="Add Item" />
-
-            <Button
-                android:id="@+id/btnEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Edit" />
 
             <Button
                 android:id="@+id/btnView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:theme="@style/ThemeOverlay.MyDarkButton"
                 android:text="View On Map" />
 
         </LinearLayout>

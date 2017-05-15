@@ -6,11 +6,29 @@ package com.andro.obe.trackmywish;
 
 public class Item {
     private String itemName;
-    private double distance;
-
-    public Item(String itemName, double distance) {
+    private double latitude;
+    private double longitude;
+    public Item(){}
+    public Item(String itemName, double latitude, double longitude) {
         this.itemName = itemName;
-        this.distance = distance;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public String getItemName() {
@@ -19,13 +37,5 @@ public class Item {
 
     public void setItemName(String itemName) {
         this.itemName = itemName;
-    }
-
-    public double getDistance() {
-        return distance;
-    }
-
-    public void setDistance(double distance) {
-        this.distance = distance;
     }
 }
