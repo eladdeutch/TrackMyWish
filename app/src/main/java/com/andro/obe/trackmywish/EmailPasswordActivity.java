@@ -236,6 +236,8 @@ public class EmailPasswordActivity extends BaseActivity implements
         } else if (i == R.id.sign_out_button) {
             signOut();
         } else if (i == R.id.my_list_button) {
+            goToMainActivity();
+            /*
             if(mAuth.getCurrentUser().isEmailVerified())
                 goToMainActivity();
             else{
@@ -243,6 +245,7 @@ public class EmailPasswordActivity extends BaseActivity implements
                         "User Email not Verified ",
                         Toast.LENGTH_SHORT).show();
             }
+            */
         }
     }
 }
