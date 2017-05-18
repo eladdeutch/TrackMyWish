@@ -62,7 +62,6 @@ public class EmailPasswordActivity extends BaseActivity implements
         mAuth = FirebaseAuth.getInstance();
         // [END initialize_auth]
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
     }
 
     @Override

@@ -102,6 +102,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        updateUserItemList(myItems);
+    }
+
     private void updateUserItemList(List<Item> items){
         mDatabase.child("users").child(mAuth.getCurrentUser().
                 getUid()).child("items").setValue(items);
