@@ -10,44 +10,47 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="KM"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        tools:layout_editor_absoluteX="316dp"
-        tools:layout_editor_absoluteY="32dp"
         android:layout_alignBaseline="@+id/itemDistance"
         android:layout_alignBottom="@+id/itemDistance"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="13dp"
         android:layout_marginRight="13dp"
-        android:layout_marginEnd="13dp" />
+        android:text="KM"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:visibility="gone"
+        tools:layout_editor_absoluteX="316dp"
+        tools:layout_editor_absoluteY="32dp" />
 
     <EditText
         android:id="@+id/editNameText"
         android:layout_width="164dp"
         android:layout_height="41dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="29dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
+        android:visibility="gone"
         tools:layout_editor_absoluteX="4dp"
-        tools:layout_editor_absoluteY="32dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="29dp" />
+        tools:layout_editor_absoluteY="32dp" />
 
     <TextView
         android:id="@+id/itemDistance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="30"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        tools:layout_editor_absoluteX="267dp"
-        tools:layout_editor_absoluteY="32dp"
         android:layout_above="@+id/saveBtt"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:layout_toLeftOf="@+id/textView2"
         android:layout_toStartOf="@+id/textView2"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="10dp" />
+        android:text="30"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:visibility="gone"
+        tools:layout_editor_absoluteX="267dp"
+        tools:layout_editor_absoluteY="32dp" />
 
     <Button
         android:id="@+id/saveBtt"
@@ -57,6 +60,30 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="178dp"
         android:text="Remove"
+        android:visibility="gone"
         tools:layout_editor_absoluteX="146dp"
         tools:layout_editor_absoluteY="229dp" />
+
+    <Button
+        android:id="@+id/add_geofences_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_marginLeft="56dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="51dp"
+        android:layout_toEndOf="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        android:text="add" />
+
+    <Button
+        android:id="@+id/remove_geofences_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/add_geofences_button"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
+        android:text="remove" />
 </RelativeLayout>

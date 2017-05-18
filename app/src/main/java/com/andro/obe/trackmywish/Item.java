@@ -1,41 +1,32 @@
 package com.andro.obe.trackmywish;
 
+import android.location.Location;
+
 /**
  * Created by Brkmo on 28/04/2017.
  */
 
 public class Item {
     private String itemName;
-    private double latitude;
-    private double longitude;
+    private WishPlace mPlace;
     public Item(){}
-    public Item(String itemName, double latitude, double longitude) {
+    public Item(String itemName, WishPlace mPlace) {
         this.itemName = itemName;
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.mPlace = mPlace;
     }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
     public String getItemName() {
         return itemName;
     }
 
     public void setItemName(String itemName) {
         this.itemName = itemName;
+    }
+
+    public WishPlace getmPlace() {
+        return mPlace;
+    }
+
+    public void setmPlace(WishPlace mPlace) {
+        this.mPlace = mPlace;
     }
 }

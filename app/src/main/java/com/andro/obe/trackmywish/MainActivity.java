@@ -51,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
         addB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addItemDialog();
+                //addItemDialog();
+                Intent intent = new Intent(MainActivity.this,AddItemActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -97,39 +99,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void addItemDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Title");
-
-// Set up the input
-        final EditText input = new EditText(this);
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_TEXT);
-        builder.setView(input);
-
-// Set up the buttons
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Random rand = new Random();
-                Item newItem = new Item(input.getText().toString(),rand.nextInt(100) + 1,rand.nextInt(100) + 1);
-                // nextInt is normally exclusive of the top value,
-                // so add 1 to make it inclusive
-                myItems.add(newItem);
-                //saveItemToFire(newItem);
-                updateUserItemList(myItems);
-            }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        builder.show();
-    }
-
     private void updateUserItemList(List<Item> items){
         mDatabase.child("users").child(mAuth.getCurrentUser().
                 getUid()).child("items").setValue(items);
@@ -155,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
             //Distance
             TextView distanceText = (TextView) itemView.findViewById(R.id.itemDistance);
-            distanceText.setText(Double.toString(currentItem.getLatitude()));
+            distanceText.setText("35");
             return itemView;
         }
     }
