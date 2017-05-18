@@ -52,16 +52,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //addItemDialog();
-                Intent intent = new Intent(MainActivity.this,AddItemActivity.class);
+                Intent intent = new Intent(MainActivity.this,AddItemFlowActivity.class);
                 startActivity(intent);
             }
         });
+        populateItemList();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        populateItemList();
+        adapter.notifyDataSetChanged();
     }
 
     public static List<Item> getItemsList(){
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void populateItemList() {
+        findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
         FirebaseUser user = mAuth.getCurrentUser();
         mDatabase.child("users").child(user.
                 getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -90,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 myItems.clear();
                 myItems.addAll(mUser.getItems());
                 adapter.notifyDataSetChanged();
+                findViewById(R.id.loadingPanel).setVisibility(View.GONE);
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

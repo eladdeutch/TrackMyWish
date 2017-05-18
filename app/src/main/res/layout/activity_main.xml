@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.andro.obe.trackmywish.MainActivity">
+    tools:context="com.andro.obe.trackmywish.MainActivity"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,33 +13,47 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:id="@+id/loadingPanel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true" />
+        </RelativeLayout>
+
         <ListView
             android:id="@+id/itemListView"
             android:layout_width="wrap_content"
             android:layout_height="454dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+    </LinearLayout>
 
-            <Button
-                android:id="@+id/bAddItem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:theme="@style/ThemeOverlay.MyDarkButton"
-                android:text="Add Item" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btnView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:theme="@style/ThemeOverlay.MyDarkButton"
-                android:text="View On Map" />
+        <Button
+            android:id="@+id/bAddItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add Item"
+            android:theme="@style/ThemeOverlay.MyDarkButton" />
 
-        </LinearLayout>
+        <Button
+            android:id="@+id/btnView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="View On Map"
+            android:theme="@style/ThemeOverlay.MyDarkButton"
+            android:visibility="gone" />
 
     </LinearLayout>
 

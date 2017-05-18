@@ -10,15 +10,15 @@
          location permissions for the 'MyLocation' functionality. 
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/m_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/m_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -37,8 +37,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDBEQADn-OqLLDBIrRO4VsyiXCsza1ednU" />
 
-        <activity android:name=".AddItemActivity"></activity>
-        <service android:name=".GeofenceTransitionsIntentService"/>
+        <service android:name=".GeofenceTransitionsIntentService" />
+
+        <activity android:name=".AddItemFlowActivity"></activity>
     </application>
 
 </manifest>

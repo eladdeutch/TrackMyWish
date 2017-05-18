@@ -103,11 +103,13 @@ public class GeofenceTransitionsIntentService extends IntentService {
         // Get the Ids of each geofence that was triggered.
         ArrayList triggeringGeofencesIdsList = new ArrayList();
         for (Geofence geofence : triggeringGeofences) {
-            triggeringGeofencesIdsList.add(geofence.getRequestId());
+            String s = geofence.getRequestId().split(":")[0];
+            triggeringGeofencesIdsList.add(s);
         }
         String triggeringGeofencesIdsString = TextUtils.join(", ",  triggeringGeofencesIdsList);
 
-        return geofenceTransitionString + ": " + triggeringGeofencesIdsString;
+        //return geofenceTransitionString + ": " + triggeringGeofencesIdsString;
+        return "Your Wish is close" + ": " + triggeringGeofencesIdsString;
     }
 
     /**
@@ -135,11 +137,11 @@ public class GeofenceTransitionsIntentService extends IntentService {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
         // Define the notification settings.
-        builder.setSmallIcon(R.drawable.ic_launcher)
+        builder.setSmallIcon(R.drawable.m_logo)
                 // In a real app, you may want to use a library like Volley
                 // to decode the Bitmap.
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(),
-                        R.drawable.ic_launcher))
+                        R.drawable.m_logo))
                 .setColor(Color.RED)
                 .setContentTitle(notificationDetails)
                 .setContentText(getString(R.string.geofence_transition_notification_text))

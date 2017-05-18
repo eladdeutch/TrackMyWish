@@ -3,15 +3,19 @@ package com.andro.obe.trackmywish;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.ResultCallback;
+
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,13 +24,18 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ItemActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, ResultCallback<Status>{
     protected static final String TAG = "MainActivity";
-
+    private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
     /*
      * Provides the entry point to Google Play services.
      */
@@ -53,34 +62,54 @@ public class ItemActivity extends AppCompatActivity implements
     private SharedPreferences mSharedPreferences;
 
     // Buttons for kicking off the process of adding or removing geofences.
-    private Button mAddGeofencesButton;
-    private Button mRemoveGeofencesButton;
+    private Switch alarmSwitch;
+    //Item info set
     private Item currentItem;
+    private int position;
+    private boolean fromSetButtonsEnabledState;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
-
-        EditText titleText = (EditText) findViewById(R.id.editNameText);
-        TextView distanceText = (TextView) findViewById(R.id.itemDistance);
-
-        int position = getIntent().getIntExtra("item-position",-1);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
+        fromSetButtonsEnabledState = false;
+        position = getIntent().getIntExtra("item-position",-1);
         if (position != -1){
             currentItem = MainActivity.getItemsList().get(position);
+            ((TextView)findViewById(R.id.itemNameText)).setText(currentItem.getItemName());
         }
         // Get the UI widgets.
-        mAddGeofencesButton = (Button) findViewById(R.id.add_geofences_button);
-        mAddGeofencesButton.setOnClickListener(new View.OnClickListener() {
+        //alarmRadius = (EditText)findViewById(R.id.alarmRadius);
+        (findViewById(R.id.deleteBtn)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addGeofencesButtonHandler(v);
+                List<Item> items = MainActivity.getItemsList();
+                items.remove(position);
+                updateUserItemList(items);
+                alarmSwitch.setChecked(false);
+                finish();
             }
         });
-        mRemoveGeofencesButton = (Button) findViewById(R.id.remove_geofences_button);
-        mRemoveGeofencesButton.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.wazeBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                removeGeofencesButtonHandler(v);
+                wazeNavi(currentItem.getmPlace().getLatitude(),currentItem.getmPlace().getLongitude());
+            }
+        });
+        alarmSwitch = (Switch)findViewById(R.id.switchAlarm);
+        alarmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(!fromSetButtonsEnabledState) {
+                    if (isChecked) {
+                        addGeofencesButtonHandler(buttonView);
+                    } else {
+                        removeGeofencesButtonHandler(buttonView);
+                    }
+                }
+                else
+                    fromSetButtonsEnabledState = false;
             }
         });
         // Empty list for storing geofences.
@@ -283,7 +312,7 @@ public class ItemActivity extends AppCompatActivity implements
         mGeofenceList.add(new Geofence.Builder()
                 // Set the request ID of the geofence. This is a string to identify this
                 // geofence.
-                .setRequestId(currentItem.getmPlace().getPlaceId())
+                .setRequestId(currentItem.getItemName()+":"+currentItem.getmPlace().getPlaceId())
 
                 // Set the circular region of this geofence.
                 .setCircularRegion(
@@ -298,8 +327,8 @@ public class ItemActivity extends AppCompatActivity implements
 
                 // Set the transition types of interest. Alerts are only generated for these
                 // transition. We track entry and exit transitions in this sample.
-                .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER |
-                        Geofence.GEOFENCE_TRANSITION_EXIT)
+                .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER)
+                        //|Geofence.GEOFENCE_TRANSITION_EXIT)
 
                 // Create the geofence.
                 .build());
@@ -312,11 +341,22 @@ public class ItemActivity extends AppCompatActivity implements
      */
     private void setButtonsEnabledState() {
         if (mGeofencesAdded) {
-            mAddGeofencesButton.setEnabled(false);
-            mRemoveGeofencesButton.setEnabled(true);
+            if(!alarmSwitch.isChecked())
+                fromSetButtonsEnabledState = true;
+            alarmSwitch.setChecked(true);
         } else {
-            mAddGeofencesButton.setEnabled(true);
-            mRemoveGeofencesButton.setEnabled(false);
+            if(alarmSwitch.isChecked())
+                fromSetButtonsEnabledState = true;
+            alarmSwitch.setChecked(false);
         }
+    }
+    private void updateUserItemList(List<Item> items){
+        mDatabase.child("users").child(mAuth.getCurrentUser().
+                getUid()).child("items").setValue(items);
+    }
+    public void wazeNavi(double latitude , double longitude){
+        final String url = String.format("waze://?ll=%f,%f&navigate=yes",latitude,longitude);
+        final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(intent);
     }
 }
