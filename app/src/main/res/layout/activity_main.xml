@@ -9,9 +9,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="8dp"
+        android:weightSum="1">
 
         <RelativeLayout
             android:id="@+id/loadingPanel"
@@ -29,31 +31,23 @@
         <ListView
             android:id="@+id/itemListView"
             android:layout_width="wrap_content"
-            android:layout_height="454dp" />
+            android:layout_height="match_parent"
+            android:layout_weight="0.73" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="51dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/bAddItem"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Add Item"
             android:theme="@style/ThemeOverlay.MyDarkButton" />
-
-        <Button
-            android:id="@+id/btnView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="View On Map"
-            android:theme="@style/ThemeOverlay.MyDarkButton"
-            android:visibility="gone" />
 
     </LinearLayout>
 
