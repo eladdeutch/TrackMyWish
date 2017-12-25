@@ -1,5 +1,5 @@
 
-package com.andro.obe.trackmywish;
+package com.andro.obe.trackmywish.Utilities;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
@@ -13,6 +13,8 @@ import android.support.v4.app.TaskStackBuilder;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.andro.obe.trackmywish.Activities.MainActivity;
+import com.andro.obe.trackmywish.R;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingEvent;
 

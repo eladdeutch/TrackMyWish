@@ -1,4 +1,4 @@
-package com.andro.obe.trackmywish;
+package com.andro.obe.trackmywish.Models;
 
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.maps.model.LatLng;
@@ -14,10 +14,10 @@ public class WishPlace {
     private double latitude;
     private double longitude;
 
-    WishPlace() {
+    public WishPlace() {
     }
 
-    WishPlace(Place place) {
+    public WishPlace(Place place) {
         placeId = place.getId();
         placeName = place.getName().toString();
         plaseAddress = place.getAddress().toString();

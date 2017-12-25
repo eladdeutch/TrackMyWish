@@ -1,9 +1,10 @@
 
-package com.andro.obe.trackmywish;
+package com.andro.obe.trackmywish.Utilities;
 
 import android.content.Context;
 import android.content.res.Resources;
 
+import com.andro.obe.trackmywish.R;
 import com.google.android.gms.location.GeofenceStatusCodes;
 
 public class GeofenceErrorMessages {

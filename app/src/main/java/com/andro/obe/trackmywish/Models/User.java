@@ -1,4 +1,4 @@
-package com.andro.obe.trackmywish;
+package com.andro.obe.trackmywish.Models;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.andro.obe.trackmywish;
+package com.andro.obe.trackmywish.Activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.widget.EditText;
 
+import com.andro.obe.trackmywish.Models.Item;
+import com.andro.obe.trackmywish.R;
+import com.andro.obe.trackmywish.Models.WishPlace;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;

@@ -1,5 +1,5 @@
 
-package com.andro.obe.trackmywish;
+package com.andro.obe.trackmywish.Utilities;
 
 import com.google.android.gms.maps.model.LatLng;
 

@@ -1,6 +1,4 @@
-package com.andro.obe.trackmywish;
-
-import android.location.Location;
+package com.andro.obe.trackmywish.Models;
 
 /**
  * Created by Brkmo on 28/04/2017.

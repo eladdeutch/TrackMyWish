@@ -1,10 +1,12 @@
-package com.andro.obe.trackmywish;
+package com.andro.obe.trackmywish.Activities;
 /**
  * Created by Brkmo on 28/04/2017.
  */
 import android.app.ProgressDialog;
 import android.support.annotation.VisibleForTesting;
 import android.support.v7.app.AppCompatActivity;
+
+import com.andro.obe.trackmywish.R;
 
 public class BaseActivity extends AppCompatActivity {
 

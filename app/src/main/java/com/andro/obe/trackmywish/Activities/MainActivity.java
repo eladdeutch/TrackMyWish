@@ -1,25 +1,23 @@
-package com.andro.obe.trackmywish;
+package com.andro.obe.trackmywish.Activities;
 
-import android.content.ClipData;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
 
+import com.andro.obe.trackmywish.Models.Item;
+import com.andro.obe.trackmywish.R;
+import com.andro.obe.trackmywish.Models.User;
+import com.andro.obe.trackmywish.Utilities.SwipeDetector;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,11 +26,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
+    private SwipeDetector swipeDetector;
 
     private static List<Item> myItems = new ArrayList<>();
     ArrayAdapter<Item> adapter;
@@ -42,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
-
+        swipeDetector = new SwipeDetector();
         adapter = new MyListAdapter();
         ListView list = (ListView)findViewById(R.id.itemListView);
         list.setAdapter(adapter);
@@ -74,11 +72,21 @@ public class MainActivity extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this,ItemActivity.class);
-                intent.putExtra("item-position",position);
-                startActivity(intent);
+                if (swipeDetector.swipeDetected()) {
+                    if (swipeDetector.getAction() == SwipeDetector.Action.RL) {
+                        view.findViewById(R.id.sDeleteBtn).setVisibility(View.VISIBLE);
+                    } else {
+                        view.findViewById(R.id.sDeleteBtn).setVisibility(View.GONE);
+                    }
+                } else {
+                    Intent intent = new Intent(MainActivity.this, ItemActivity.class);
+                    intent.putExtra("item-position", position);
+                    startActivity(intent);
+                }
             }
         });
+
+        list.setOnTouchListener(swipeDetector);
     }
 
     private void populateItemList() {
@@ -133,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
             //Distance
             TextView distanceText = (TextView) itemView.findViewById(R.id.itemDistance);
-            distanceText.setText("35");
+            //distanceText.setText("35");
             return itemView;
         }
     }

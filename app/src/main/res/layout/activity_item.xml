@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.andro.obe.trackmywish.ItemActivity"
+    tools:context="com.andro.obe.trackmywish.Activities.ItemActivity"
     android:orientation="vertical">
 
     <LinearLayout
@@ -26,13 +26,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.05"
             android:switchTextAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:text="Alarm" />
+            android:text="Set reminder" />
 
         <ImageButton
             android:id="@+id/wazeBtn"
-            android:layout_width="195dp"
-            android:layout_height="81dp"
-            android:layout_weight="0.18"
+            android:layout_width="216dp"
+            android:layout_height="115dp"
+            android:layout_weight="0.13"
             android:adjustViewBounds="false"
             android:elevation="0dp"
             android:scaleType="centerInside"

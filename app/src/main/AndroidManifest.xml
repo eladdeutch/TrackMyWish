@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -16,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".EmailPasswordActivity"
+            android:name=".Activities.EmailPasswordActivity"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,15 +23,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ItemActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".AddItemFlowActivity"></activity>
+        <activity android:name=".Activities.ItemActivity" />
+        <activity android:name=".Activities.MainActivity" />
+        <activity android:name=".Activities.AddItemFlowActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDBEQADn-OqLLDBIrRO4VsyiXCsza1ednU" />
 
-        <service android:name=".GeofenceTransitionsIntentService" />
+        <service android:name=".Utilities.GeofenceTransitionsIntentService" />
 
     </application>
 
